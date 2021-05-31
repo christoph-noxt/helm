@@ -11,9 +11,6 @@ keywords:
 - php
 home: https://nextcloud.com/
 icon: https://cdn.rawgit.com/docker-library/docs/defa5ffc7123177acd60ddef6e16bddf694cc35f/nextcloud/logo.svg
-sources:
-- https://github.com/nextcloud/helm
-- https://github.com/nextcloud/docker
 maintainers:
 - name: skjnldsv
   email: skjnldsv@protonmail.com
@@ -22,15 +19,18 @@ maintainers:
 - name: billimek
   email: jeff@billimek.com
 dependencies:
-- name: postgresql
-  version: 10.3.7
-  repository: https://charts.bitnami.com/bitnami
-  condition: postgresql.enabled
-- name: mariadb
-  version: 7.10.2
-  repository: https://charts.bitnami.com/bitnami
-  condition: mariadb.enabled
-- name: redis
-  version: 11.0.5
-  repository: https://charts.bitnami.com/bitnami
-  condition: redis.enabled
+  - name: postgresql
+    version: 10.3.7
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+  - name: mariadb
+    version: 7.10.2
+    repository: https://charts.bitnami.com/bitnami
+    condition: mariadb.enabled
+  - name: redis
+    version: 11.0.5
+    repository: https://charts.bitnami.com/bitnami
+    condition: redis.enabled
+sources:
+- https://github.com/nextcloud/helm
+- https://github.com/nextcloud/docker
