@@ -230,7 +230,7 @@ spec:
         - name: nextcloud-data
           mountPath: /var/www/html
           subPath: {{ ternary "html" (printf "%s/%s" .Values.nextcloud.persistence.subPath "html") (empty .Values.nextcloud.persistence.subPath) }}
-        - name: nextcloud-data
+        - name: samba
           mountPath: {{ .Values.nextcloud.datadir }}
           subPath: {{ ternary "data" (printf "%s/%s" .Values.nextcloud.persistence.subPath "data") (empty .Values.nextcloud.persistence.subPath) }}
         - name: nextcloud-data
@@ -314,7 +314,7 @@ spec:
         - name: nextcloud-data
           mountPath: /var/www/html
           subPath: {{ ternary "html" (printf "%s/%s" .Values.nextcloud.persistence.subPath "html") (empty .Values.nextcloud.persistence.subPath) }}
-        - name: nextcloud-data
+        - name: samba
           mountPath: {{ .Values.nextcloud.datadir }}
           subPath: {{ ternary "data" (printf "%s/%s" .Values.nextcloud.persistence.subPath "data") (empty .Values.nextcloud.persistence.subPath) }}
         - name: nextcloud-data
