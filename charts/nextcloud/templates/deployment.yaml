@@ -233,7 +233,7 @@ spec:
         - name: samba
           mountPath: {{ .Values.nextcloud.datadir }}
           subPath: {{ ternary "data" (printf "%s/%s" .Values.nextcloud.persistence.subPath "data") (empty .Values.nextcloud.persistence.subPath) }}
-        - name: nextcloud-data
+        - name: samba
           mountPath: /var/www/html/config
           subPath: {{ ternary "config" (printf "%s/%s" .Values.nextcloud.persistence.subPath "config") (empty .Values.nextcloud.persistence.subPath) }}
         - name: nextcloud-data
