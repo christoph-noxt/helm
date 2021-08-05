@@ -224,6 +224,9 @@ spec:
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         volumeMounts:
+        {{- if .Values.nextcloud.extraVolumeMounts }}
+{{ toYaml .Values.nextcloud.extraVolumeMounts | indent 8 }}
+        {{- end }}
         - name: nextcloud-data
           mountPath: /var/www/
           subPath: {{ ternary "root" (printf "%s/%s" .Values.nextcloud.persistence.subPath "root") (empty .Values.nextcloud.persistence.subPath) }}
@@ -264,9 +267,6 @@ spec:
         - name: nextcloud-phpconfig
           mountPath: {{ $nginxEnabled | ternary (printf "/usr/local/etc/php-fpm.d/%s" $key | quote) (printf "/usr/local/etc/php/conf.d/%s" $key | quote) }}
           subPath: {{ $key }}
-        {{- end }}
-        {{- if .Values.nextcloud.extraVolumeMounts }}
-{{ toYaml .Values.nextcloud.extraVolumeMounts | indent 8 }}
         {{- end }}
         {{- if .Values.nginx.enabled }}
       - name: {{ .Chart.Name }}-nginx
