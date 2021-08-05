@@ -249,14 +249,14 @@ spec:
           mountPath: /var/www/html/themes
           subPath: {{ ternary "themes" (printf "%s/%s" .Values.nextcloud.persistence.subPath "themes") (empty .Values.nextcloud.persistence.subPath) }}
         {{- range $key, $value := .Values.nextcloud.configs }}
-        - name: samba
+        - name: nextcloud-config
           mountPath: /var/www/html/config/{{ $key }}
           subPath: {{ $key }}
         {{- end }}
         {{- if .Values.nextcloud.configs }}
         {{- range $key, $value := .Values.nextcloud.defaultConfigs }}
         {{- if $value }}
-        - name: samba
+        - name: nextcloud-config
           mountPath: /var/www/html/config/{{ $key }}
           subPath: {{ $key }}
         {{- end }}
@@ -388,7 +388,7 @@ spec:
         emptyDir: {}
       {{- end }}
       {{- if .Values.nextcloud.configs }}
-      - name: samba
+      - name: nextcloud-config
         configMap:
           name: {{ template "nextcloud.fullname" . }}-config
       {{- end }}
