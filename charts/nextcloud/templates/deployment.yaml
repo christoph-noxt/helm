@@ -387,6 +387,9 @@ spec:
       {{- else }}
         emptyDir: {}
       {{- end }}
+      {{- if .Values.nextcloud.extraVolumes }}
+{{ toYaml .Values.nextcloud.extraVolumes | indent 6 }}
+      {{- end }}
       {{- if .Values.nextcloud.configs }}
       - name: nextcloud-config
         configMap:
@@ -401,9 +404,6 @@ spec:
       - name: nextcloud-nginx-config
         configMap:
           name: {{ template "nextcloud.fullname" . }}-nginxconfig
-      {{- end }}
-      {{- if .Values.nextcloud.extraVolumes }}
-{{ toYaml .Values.nextcloud.extraVolumes | indent 6 }}
       {{- end }}
       {{- if .Values.nginx.enabled }}
       # Will mount configuration files as www-data (id: 82) for nextcloud
