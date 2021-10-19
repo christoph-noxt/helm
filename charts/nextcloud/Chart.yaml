@@ -1,18 +1,17 @@
 apiVersion: v2
 name: moyn
 version: 2.6.6
-appVersion: 22.0.0
-description: Eine einfache Cloud für jeden!
+appVersion: 22.0.3
+description: A file sharing server that puts the control and security of your own data back into your hands.
 keywords:
 - moyn
 - storage
 - einfach
 - sexy
-home: https://moyn.io
+home: https://noxt.de/
 icon: https://cdn.rawgit.com/docker-library/docs/defa5ffc7123177acd60ddef6e16bddf694cc35f/nextcloud/logo.svg
 dependencies:
-  - name: postgresql
-    version: 10.3.7
+  - name: redis
+    version: 11.0.5
     repository: https://charts.bitnami.com/bitnami
-    condition: postgresql.enabled
-sources:
+    condition: redis.enabled
